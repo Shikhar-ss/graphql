@@ -1,9 +1,10 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql') //should prefferably called by using destructuring notation as per dox
 const app = express();
-
-app.use('/graphql',graphqlHTTP.graphqlHTTP({
-
+const schema = require("./schema/schema")
+app.use('/graphql', graphqlHTTP.graphqlHTTP({
+    schema,
+    graphiql: true
 }));
 
 app.listen(4000, () => {
