@@ -9,9 +9,9 @@ const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt }
 const _ = require('lodash');
 // Dummy data
 const books = [
-    { name: 'Name of the wind', genre: 'Fantasy', id: '1' },
-    { name: 'The final empire', genre: 'Fantasy', id: '2' },
-    { name: 'The long earth', genre: 'Sci-fi', id: '3' }
+    { name: 'Name of the wind', genre: 'Fantasy', id: '1', authorId: '1' },
+    { name: 'The final empire', genre: 'Fantasy', id: '2', authorId: '2' },
+    { name: 'The long earth', genre: 'Sci-fi', id: '3', authorId: '3' }
 ];
 
 const authors = [
@@ -25,7 +25,11 @@ const BookType = new GraphQLObjectType({
     fields: () => ({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
-        genre: { type: GraphQLString }
+        genre: { type: GraphQLString },
+        author: {type: AuthorType,
+        resolve(parent,args){
+            return _.find(authors, {id:parent.authorId})
+        }}
     })
 });
 
