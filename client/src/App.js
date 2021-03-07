@@ -1,10 +1,11 @@
 import './App.css';
-import { ApolloClient, ApolloProvider } from '@apollo/client'
+import { ApolloClient, ApolloProvider,InMemoryCache } from '@apollo/client'
 import Booklist from "./components/BookList"
 
 // Apollo client setup
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql'
+  uri: 'http://localhost:4000/graphql',
+  cache: new InMemoryCache()
 })
 
 function App() {

@@ -3,8 +3,10 @@ const graphqlHTTP = require('express-graphql') //should prefferably called by us
 const app = express();
 const schema = require("./schema/schema")
 const dotenv = require('dotenv')
+const cors = require('cors')
 const mongoose = require('mongoose')
 
+app.use(cors());
 dotenv.config();
 
 const connectionString = `mongodb+srv://graphqlserver:${process.env.DB_PASSWORD}@cluster0.js6xz.mongodb.net/graphql?retryWrites=true&w=majority`;
